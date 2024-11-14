@@ -18,20 +18,26 @@ public class Game {
 
     @Column(name= "game_year")
     private Integer year;
-    private String platform;
+    private String genre;
+    private String platforms;
+    private Double score;
     private String imgUrl;
     private String shortDescription;
+
+    @Column(columnDefinition = "TEXT")
     private String longDescription;
 
     public Game(){
 
     }
 
-    public Game(Long id, String title, Integer year, String platform, String imgUrl, String shortDescription, String longDescription) {
+    public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl, String shortDescription, String longDescription) {
         this.id = id;
         this.title = title;
         this.year = year;
-        this.platform = platform;
+        this.genre = genre;
+        this.platforms = platforms;
+        this.score = score;
         this.imgUrl = imgUrl;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
@@ -61,12 +67,20 @@ public class Game {
         this.year = year;
     }
 
-    public String getPlatform() {
-        return this.platform;
+    public String getPlatforms() {
+        return this.platforms;
     }
 
-    public void setPlatform(String platform) {
-        this.platform = platform;
+    public void setPlatforms(String platforms) {
+        this.platforms = platforms;
+    }
+
+    public Double getScore() {
+        return this.score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
     }
 
     public String getImgUrl() {
@@ -109,8 +123,22 @@ public class Game {
         return this;
     }
 
-    public Game platform(String platform) {
-        setPlatform(platform);
+        /**
+     * @return String return the genre
+     */
+    public String getGenre() {
+        return genre;
+    }
+
+    /**
+     * @param genre the genre to set
+     */
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public Game platforms(String platforms) {
+        setPlatforms(platforms);
         return this;
     }
 
@@ -137,12 +165,12 @@ public class Game {
             return false;
         }
         Game game = (Game) o;
-        return Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(year, game.year) && Objects.equals(platform, game.platform) && Objects.equals(imgUrl, game.imgUrl) && Objects.equals(shortDescription, game.shortDescription) && Objects.equals(longDescription, game.longDescription);
+        return Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(year, game.year) && Objects.equals(platforms, game.platforms) && Objects.equals(imgUrl, game.imgUrl) && Objects.equals(shortDescription, game.shortDescription) && Objects.equals(longDescription, game.longDescription);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, year, platform, imgUrl, shortDescription, longDescription);
+        return Objects.hash(id, title, year, platforms, imgUrl, shortDescription, longDescription);
     }
 
     @Override
@@ -151,11 +179,12 @@ public class Game {
             " id='" + getId() + "'" +
             ", title='" + getTitle() + "'" +
             ", year='" + getYear() + "'" +
-            ", platform='" + getPlatform() + "'" +
+            ", platforms='" + getPlatforms() + "'" +
             ", imgUrl='" + getImgUrl() + "'" +
             ", shortDescription='" + getShortDescription() + "'" +
             ", longDescription='" + getLongDescription() + "'" +
             "}";
     }
     
+
 }
